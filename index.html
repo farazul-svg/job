@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চাকরি নিয়োগ বিজ্ঞপ্তি</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SolaimanLipi', 'Siyam Rupali', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #1a5276;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .stats-warning-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .total-applications {
+            background-color: #2980b9;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .warning-message {
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: left;
+            border-left: 5px solid #f1c40f;
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .warning-icon {
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        .job-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .job-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            overflow: hidden;
+            border-left: 5px solid #1a5276;
+            transition: transform 0.3s ease;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .job-title-section {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .job-title {
+            color: #1a5276;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .company-name {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.1rem;
+        }
+        
+        .job-details {
+            padding: 20px;
+        }
+        
+        .detail-row {
+            display: flex;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1a5276;
+            width: 150px;
+        }
+        
+        .detail-value {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .job-description {
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+        
+        .copy-container {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-number {
+            font-weight: bold;
+            color: #1a5276;
+        }
+        
+        .copy-button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-button:hover {
+            background-color: #2ecc71;
+        }
+        
+        .copy-notification {
+            color: #27ae60;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .urgent-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        
+        .deadline {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .detail-row {
+                flex-direction: column;
+            }
+            
+            .detail-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stats-warning-container {
+                flex-direction: column;
+            }
+            
+            .total-applications, 
+            .warning-message {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>চাকরি নিয়োগ বিজ্ঞপ্তি</h1>
+        <p>প্রতিষ্ঠানসমূহের প্রকাশিত চাকরির সুযোগ</p>
+        
+        <div class="stats-warning-container">
+            <div class="total-applications">
+                <strong>মোট আবেদন:</strong> ২,১৫৭ টি
+            </div>
+            
+            <div class="warning-message">
+                <span class="warning-icon">⚠</span>
+                <strong>গুরুত্বপূর্ণ সতর্কতা:</strong> এই প্ল্যাটফর্ম শুধুমাত্র চাকরি বিজ্ঞপ্তি প্রদর্শনের মাধ্যম। 
+                কোন চাকরিদাতার সাথে টাকা পয়সার লেনদেনে জড়িত হওয়ার আগে তাদের সততা ও বিশ্বস্ততা নিজ দায়িত্বে যাচাই করে নিন। 
+                কোন অনাকাঙ্ক্ষিত ঘটনার জন্য এই প্ল্যাটফর্মের কর্তৃপক্ষ কোনভাবেই দায়ী থাকবে না।
+            </div>
+        </div>
+    </div>
+    
+    <div class="job-container">
+        <!-- চাকরি ১ -->
+        <div class="job-card">
+            <div class="job-title-section">
+                <h2 class="job-title">সফটওয়্যার ডেভেলপার <span class="urgent-badge">জরুরী</span></h2>
+                <div class="company-name">টেকনোলজি সলিউশনস লিমিটেড</div>
+            </div>
+            <div class="job-details">
+                <div class="detail-row">
+                    <span class="detail-label">চাকরির ধরন:</span>
+                    <span class="detail-value">ফুল টাইম</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">অবস্থান:</span>
+                    <span class="detail-value">ঢাকা (গুলশান)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">বেতন:</span>
+                    <span class="detail-value">৬০,০০০ - ৮০,০০০ টাকা</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">আবেদনের শেষ তারিখ:</span>
+                    <span class="detail-value deadline">১৫ আগস্ট ২০২৩</span>
+                </div>
+                <div class="job-description">
+                    <p><strong>চাকরির বিবরণ:</strong> আমরা একজন দক্ষ সফটওয়্যার ডেভেলপার খুঁজছি যিনি PHP, Laravel এবং JavaScript এ অভিজ্ঞ। প্রার্থীকে অবশ্যই RESTful API ডেভেলপমেন্ট এবং ডাটাবেস ম্যানেজমেন্ট (MySQL) সম্পর্কে ভালো ধারণা থাকতে হবে। React.js বা Vue.js জানা থাকলে অগ্রাধিকার দেওয়া হবে।</p>
+                    
+                    <p><strong>দায়িত্ব:</strong> ওয়েব অ্যাপ্লিকেশন ডেভেলপমেন্ট, কোড রিভিউ, টিমের সাথে সহযোগিতা, নতুন ফিচার ইমপ্লিমেন্ট করা।</p>
+                </div>
+                <div class="copy-container">
+                    <div class="contact-number">যোগাযোগ: ০১৭১২৩৪৫৬৭৮</div>
+                    <button class="copy-button" onclick="copyToClipboard(this, '০১৭১২৩৪৫৬৭৮')">কপি করুন</button>
+                    <span class="copy-notification">কপি হয়েছে!</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- চাকরি ২ -->
+        <div class="job-card">
+            <div class="job-title-section">
+                <h2 class="job-title">মার্কেটিং এক্সিকিউটিভ</h2>
+                <div class="company-name">গ্রোবাল ট্রেডিং কর্পোরেশন</div>
+            </div>
+            <div class="job-details">
+                <div class="detail-row">
+                    <span class="detail-label">চাকরির ধরন:</span>
+                    <span class="detail-value">ফুল টাইম</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">অবস্থান:</span>
+                    <span class="detail-value">চট্টগ্রাম (আগাবাজার)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">বেতন:</span>
+                    <span class="detail-value">৩৫,০০০ - ৪৫,০০০ টাকা</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">আবেদনের শেষ তারিখ:</span>
+                    <span class="detail-value">৩০ জুলাই ২০২৩</span>
+                </div>
+                <div class="job-description">
+                    <p><strong>চাকরির বিবরণ:</strong> আমরা একজন প্রাণবন্ত এবং লক্ষ্যাভিমুখী মার্কেটিং এক্সিকিউটিভ খুঁজছি যিনি আমাদের মার্কেটিং টিমে যোগ দিবেন। প্রার্থীকে অবশ্যই ডিজিটাল মার্কেটিং, সোশ্যাল মিডিয়া ম্যানেজমেন্ট এবং ক্লায়েন্ট রিলেশনশিপ ম্যানেজমেন্টে দক্ষ হতে হবে।</p>
+                    
+                    <p><strong>দায়িত্ব:</strong> নতুন ক্লায়েন্ট অর্জন, মার্কেটিং ক্যাম্পেইন পরিচালনা, সেলস টার্গেট অর্জন, মার্কেট রিসার্চ করা।</p>
+                </div>
+                <div class="copy-container">
+                    <div class="contact-number">যোগাযোগ: ০১৮৯৮৭৬৫৪৩২</div>
+                    <button class="copy-button" onclick="copyToClipboard(this, '০১৮৯৮৭৬৫৪৩২')">কপি করুন</button>
+                    <span class="copy-notification">কপি হয়েছে!</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- চাকরি ৩ -->
+        <div class="job-card">
+            <div class="job-title-section">
+                <h2 class="job-title">অ্যাকাউন্টেন্ট</h2>
+                <div class="company-name">ফাইন্যান্সিয়াল সার্ভিসেস লিমিটেড</div>
+            </div>
+            <div class="job-details">
+                <div class="detail-row">
+                    <span class="detail-label">চাকরির ধরন:</span>
+                    <span class="detail-value">ফুল টাইম</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">অবস্থান:</span>
+                    <span class="detail-value">সিলেট (জিন্দাবাজার)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">বেতন:</span>
+                    <span class="detail-value">৪০,০০০ - ৫০,০০০ টাকা</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">আবেদনের শেষ তারিখ:</span>
+                    <span class="detail-value">১০ আগস্ট ২০২৩</span>
+                </div>
+                <div class="job-description">
+                    <p><strong>চাকরির বিবরণ:</strong> আমরা একজন অভিজ্ঞ অ্যাকাউন্টেন্ট খুঁজছি যিনি আমাদের ফাইন্যান্স টিমে যোগ দিবেন। প্রার্থীকে অবশ্যই ট্যাক্সেশন, অডিটিং এবং ফাইন্যান্সিয়াল রিপোর্টিং সম্পর্কে গভীর জ্ঞান থাকতে হবে।</p>
+                    
+                    <p><strong>দায়িত্ব:</strong> হিসাব রক্ষণ, ব্যাংক রিকনসিলিয়েশন, ট্যাক্স রিটার্ন প্রস্তুত করা, মাসিক ফাইন্যান্সিয়াল রিপোর্ট তৈরি করা।</p>
+                    
+                    <p><strong>প্রয়োজনীয় যোগ্যতা:</strong> BBA/MBA in Accounting, CA (CC) প্রার্থীদের অগ্রাধিকার দেওয়া হবে। কমপক্ষে ৩ বছর অভিজ্ঞতা প্রয়োজন।</p>
+                </div>
+                <div class="copy-container">
+                    <div class="contact-number">যোগাযোগ: ০১৯১১২২৩৩৪৪</div>
+                    <button class="copy-button" onclick="copyToClipboard(this, '০১৯১১২২৩৩৪৪')">কপি করুন</button>
+                    <span class="copy-notification">কপি হয়েছে!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(button, text) {
+            // Create a temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            
+            // Select and copy the text
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Remove the textarea
+            document.body.removeChild(textarea);
+            
+            // Show notification
+            const notification = button.nextElementSibling;
+            notification.style.display = 'inline';
+            button.style.display = 'none';
+            
+            // Hide notification after 2 seconds
+            setTimeout(() => {
+                notification.style.display = 'none';
+                button.style.display = 'inline-block';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
