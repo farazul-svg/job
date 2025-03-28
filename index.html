@@ -205,6 +205,26 @@
                 min-width: 100%;
             }
         }
+            /* যোগ করুন বাটন */
+    .add-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        .add-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .add-button button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -364,5 +384,10 @@
             }, 2000);
         }
     </script>
+    <!-- যোগ করুন বাটন -->
+  <div class="add-button">
+    <a href="https://www.google.com"><button>➕ যোগ করুন</button></a>
+
+</div>
 </body>
 </html>
